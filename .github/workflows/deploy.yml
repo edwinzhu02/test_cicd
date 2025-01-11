@@ -1,0 +1,81 @@
+name: CI/CD Pipeline with Deployment for .NET 9
+
+on:
+  push:
+    branches:
+      - main  # 主分支推送时触发
+  pull_request:
+    branches:
+      - main  # 主分支的 PR 时触发
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET 9 SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '9.0.x'  # 使用 .NET 9 SDK
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build project
+      run: dotnet build --configuration Release
+
+    - name: Run tests
+      run: dotnet test
+
+  deploy-to-test:
+    runs-on: ubuntu-latest
+    needs: build-and-test  # 依赖 build-and-test 任务
+    if: github.ref == 'refs/heads/main'  # 仅在 main 分支触发
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET 9 SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '9.0.x'  # 使用 .NET 9 SDK
+
+    - name: Publish project
+      run: dotnet publish -c Release -o ./publish
+
+    - name: Deploy to test environment
+      run: |
+        echo "Deploying to test environment..."
+        # 这里可以添加部署脚本，例如通过 SSH 或 FTP 部署
+        scp -r ./publish user@test-server:/var/www/test-app
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.TEST_ENV_SSH_KEY }}
+
+  deploy-to-prod:
+    runs-on: ubuntu-latest
+    needs: build-and-test  # 依赖 build-and-test 任务
+    if: github.ref == 'refs/heads/main'  # 仅在 main 分支触发
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET 9 SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '9.0.x'  # 使用 .NET 9 SDK
+
+    - name: Publish project
+      run: dotnet publish -c Release -o ./publish
+
+    - name: Deploy to production environment
+      run: |
+        echo "Deploying to production environment..."
+        # 这里可以添加部署脚本，例如通过 SSH 或 FTP 部署
+        scp -r ./publish user@prod-server:/var/www/prod-app
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.PROD_ENV_SSH_KEY }}
