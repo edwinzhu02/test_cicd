@@ -1,0 +1,30 @@
+2025-01-09 10:42:08.657 +13:00 [INF] User profile is available. Using 'C:\Users\edwin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-01-09 10:42:09.102 +13:00 [INF] Now listening on: http://localhost:5000
+2025-01-09 10:42:09.103 +13:00 [INF] Now listening on: https://localhost:5001
+2025-01-09 10:42:09.155 +13:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-01-09 10:42:09.156 +13:00 [INF] Hosting environment: Development
+2025-01-09 10:42:09.156 +13:00 [INF] Content root path: C:\Users\edwin\source\repos\Lesson5_webapi\Lesson5_webapi
+2025-01-09 10:42:21.999 +13:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/Students/5 - null null
+2025-01-09 10:42:22.200 +13:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '8/01/2025 8:54:26 am', Current time (UTC): '8/01/2025 9:42:22 pm'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-01-09 10:42:22.205 +13:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '8/01/2025 8:54:26 am', Current time (UTC): '8/01/2025 9:42:22 pm'.
+2025-01-09 10:42:22.242 +13:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/Students/5 - 307 0 null 251.1759ms
+2025-01-09 10:42:22.317 +13:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/Students/5 - null null
+2025-01-09 10:42:22.321 +13:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '8/01/2025 8:54:26 am', Current time (UTC): '8/01/2025 9:42:22 pm'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-01-09 10:42:22.322 +13:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '8/01/2025 8:54:26 am', Current time (UTC): '8/01/2025 9:42:22 pm'.
+2025-01-09 10:42:22.324 +13:00 [INF] Executing endpoint 'Lesson5_webapi.Controllers.StudentsController.Get (Lesson5_webapi)'
+2025-01-09 10:42:22.341 +13:00 [INF] Route matched with {action = "Get", controller = "Students"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get(System.String) on controller Lesson5_webapi.Controllers.StudentsController (Lesson5_webapi).
+2025-01-09 10:42:26.528 +13:00 [INF] Received request to get student with ID 5
+2025-01-09 10:42:54.303 +13:00 [INF] Executing NotFoundObjectResult, writing value of type 'System.String'.
+2025-01-09 10:42:54.310 +13:00 [INF] Executed action Lesson5_webapi.Controllers.StudentsController.Get (Lesson5_webapi) in 31965.7429ms
+2025-01-09 10:42:54.310 +13:00 [INF] Executed endpoint 'Lesson5_webapi.Controllers.StudentsController.Get (Lesson5_webapi)'
+2025-01-09 10:42:54.310 +13:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/Students/5 - 404 null text/plain; charset=utf-8 31993.1656ms
