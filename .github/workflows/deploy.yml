@@ -51,7 +51,9 @@ jobs:
       run: |
         echo "Deploying to test environment..."
         # 这里可以添加部署脚本，例如通过 SSH 或 FTP 部署
-        scp -r ./publish user@test-server:/var/www/test-app
+        # scp -r ./publish user@test-server:/var/www/test-app
+        ls -la ./publish
+        echo "Deployment would copy files to user@test-server:/var/www/test-app"        
       env:
         SSH_PRIVATE_KEY: ${{ secrets.TEST_ENV_SSH_KEY }}
 
@@ -76,6 +78,8 @@ jobs:
       run: |
         echo "Deploying to production environment..."
         # 这里可以添加部署脚本，例如通过 SSH 或 FTP 部署
-        scp -r ./publish user@prod-server:/var/www/prod-app
+        # scp -r ./publish user@prod-server:/var/www/prod-app
+        ls -la ./publish
+        echo "Deployment would copy files to user@prod-server:/var/www/prod-app"        
       env:
         SSH_PRIVATE_KEY: ${{ secrets.PROD_ENV_SSH_KEY }}
