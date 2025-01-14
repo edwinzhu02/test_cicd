@@ -52,7 +52,8 @@ jobs:
         echo "Deploying to test environment..."
         # 这里可以添加部署脚本，例如通过 SSH 或 FTP 部署
         # scp -r ./publish user@test-server:/var/www/test-app
-        ls -la ./publish
+        scp -r ./publish root@46.250.240.134:/root/testserver
+        #ls -la ./publish
         echo "Deployment would copy files to user@test-server:/var/www/test-app"        
       env:
         SSH_PRIVATE_KEY: ${{ secrets.TEST_ENV_SSH_KEY }}
